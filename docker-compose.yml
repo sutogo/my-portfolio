@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  app:
+    # 上のDockerfileを使ってコンテナをビルドする
+    build: .
+    # コンテナのポート3000を、PCのポート3000に接続
+    ports:
+      - "3000:3000"
+    # PCの現在のフォルダを、コンテナの/appに同期させる
+    volumes:
+      - .:/app
+    # コンテナを起動し続けるための設定
+    tty: true
