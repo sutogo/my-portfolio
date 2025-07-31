@@ -1,0 +1,29 @@
+.researchContainer {
+  padding: 40px 20px;
+  max-width: 1100px; /* 800pxから変更 */
+  margin: 0 auto;
+  text-align: left;
+}
+
+.researchContainer h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.researchContainer h2 {
+  font-size: 1.8rem;
+  border-bottom: 1px solid #00ffff;
+  padding-bottom: 8px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.section {
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.section p {
+  margin-bottom: 15px;
+}

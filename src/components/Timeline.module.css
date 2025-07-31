@@ -1,0 +1,98 @@
+.timelineContainer {
+  position: relative;
+  width: 100%;
+  margin: 40px 0;
+}
+
+/* タイムラインの中央線 */
+.timelineContainer::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background-color: #00ffff;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1px;
+}
+
+.timelineItem {
+  padding: 10px 15px;
+  position: relative;
+  width: 50%;
+}
+
+/* タイムライン上の丸 */
+.timelineDot {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: var(--background-color);
+  border: 2px solid #00ffff;
+  top: 28px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* 左側のアイテム */
+.left {
+  left: 0;
+}
+.left .timelineDot {
+  right: -8px;
+}
+
+/* 右側のアイテム */
+.right {
+  left: 50%;
+}
+.right .timelineDot {
+  left: -8px;
+}
+
+.timelineContent {
+  width: 500px;
+  padding: 20px 30px;
+  background-color: #282c34;
+  position: relative;
+  border-radius: 6px;
+}
+
+.timelineContent h3 {
+  margin-top: 0;
+  color: #00ffff;
+}
+
+.timelineDate {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #ccc;
+  margin-bottom: 10px;
+  display: block;
+}
+
+
+
+/* 画面幅が768px以下の場合に適用 */
+@media (max-width: 768px) {
+  /* 中央線を左端に移動 */
+  .timelineContainer::after {
+    left: 8px;
+  }
+
+  /* 全てのアイテムを左側に配置 */
+  .timelineItem {
+    width: 100%;
+    padding-left: 40px;
+    padding-right: 15px;
+  }
+  .left, .right {
+    left: 0%;
+  }
+
+  /* 丸の位置を調整 */
+  .left .timelineDot, .right .timelineDot {
+    left: 0;
+  }
+}
