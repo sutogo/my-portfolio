@@ -46,7 +46,7 @@ function CameraAnimation() {
 
     // カメラの寄り（Z軸）はそのまま
     gsap.to(camera.position, {
-      z: 2,
+      z: 0.8, // Zoom in closer
       duration: 2.2,
       ease: 'power3.inOut',
     })

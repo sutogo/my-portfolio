@@ -1,10 +1,5 @@
 import styles from './QualificationCard.module.css';
-
-// 型定義
-export type Qualification = {
-  name: string;
-  icon: React.ReactNode;
-};
+import type { Qualification } from '../data/skills';
 
 function QualificationCard({ qualification }: { qualification: Qualification }) {
   return (

@@ -10,7 +10,7 @@ function Research() {
         <section className={styles.section}>
           <h2>研究概要</h2>
           <p>
-            PS型人工膝関節置換術（TKA）中に、脛骨大腿関節および膝蓋大腿関節に生じる荷重とその方向を、リアルタイムかつin vivoで計測可能なシステムの開発を行いました。
+            PS型人工膝関節置換術（TKA）中に，脛骨大腿関節および膝蓋大腿関節に生じる荷重とその方向を，リアルタイムかつin vivoで計測可能なシステムの開発を行っています．
           </p>
         </section>
       </FadeIn>
@@ -19,7 +19,18 @@ function Research() {
         <section className={styles.section}>
           <h2>目的と背景</h2>
           <p>
-            （ここには、なぜこの研究が必要なのか、既存の課題は何か、といった背景を記述します。例：術後の成績向上には正確な軟部組織バランスの再現が不可欠であるが、従来の手法では定量的な評価が困難であった...など）
+            術中の軟部組織における荷重バランスの定量化は，TKA後のQOL向上に寄与するとされるが，TKA術中の軟部組織のバランス調整時に従来用いられているテンサーは膝蓋骨を裏返し，
+            または側方にずらしたまま使用する．そのため，術後との整合性に課題があった．
+          </p>
+
+          <p>
+            市販のセンサ内蔵型インサートは高価かつ使い捨てであり，CR型にのみ対応している．
+            さらに，近年主流となっているPS型では術後動態が異なるため，PS型対応の測定手法が求められている．一方で，膝蓋大腿関節を取り扱った研究は件数が少ない．膝蓋骨が小さいため，
+            対象とするのが難しいことが理由として挙げられるが，膝蓋大腿関節に加わる圧縮力は，膝前部の痛みなどTKA術後の合併症に繋がる可能性がある．
+          </p>
+
+          <p>
+            以上のことから，術中に軟部組織のバランスと膝蓋大腿関節に掛かる負荷を動的に測定が可能となれば，術中の荷重バランス調整の精度が向上し，術後の機能回復期間短縮やQOL向上への貢献が期待される．
           </p>
         </section>
       </FadeIn>
@@ -36,9 +47,23 @@ function Research() {
           <p>
             <strong>3. UI/UXの改善:</strong> 術者がリアルタイムに荷重情報を把握できるよう、直感的なユーザーインターフェースを持つソフトウェアを開発・改善しました。
           </p>
-          <p>
-            <strong>4. UI/UXの改善:</strong> 術者がリアルタイムに荷重情報を把握できるよう、直感的なユーザーインターフェースを持つソフトウェアを開発・改善しました。
-          </p>
+        </section>
+      </FadeIn>
+
+      <FadeIn>
+        <section className={styles.section}>
+          <h2>研究についてわかりやすくまとめた資料</h2>
+          <div className={styles.slideContainer}>
+            {/* ここに、Speaker Deckからコピーした<iframe>コードを貼り付けます */}
+            <iframe 
+              className="speakerdeck-iframe" 
+              style={{border: '5px solid #000000', background: 'rgba(0, 0, 0, 0.1)', margin: '0px', padding: '0px', borderRadius: '6px', boxShadow: 'rgba(0, 0, 0, 0.2) 0px 5px 40px', width: '100%', height: 'auto', aspectRatio: '560 / 315'}} 
+              src="https://speakerdeck.com/player/ffcc7a7df3874b8ca71421c9b9dfde44" 
+              title="Your Presentation Title" 
+              allowFullScreen 
+              data-ratio="1.7777777777777777">
+            </iframe>
+          </div>
         </section>
       </FadeIn>
 
@@ -46,11 +71,9 @@ function Research() {
         <section className={styles.section}>
           <h2>結果と社会への還元</h2>
           <p>
-            （ここには、研究によって何が明らかになったか、どのようなデータが得られたかを記述します。例：本システムにより、これまでブラックボックスであった術中の詳細な荷重変化を可視化することに成功した...など）
+            術中に軟部組織のバランスと膝蓋大腿関節に掛かる負荷を動的に測定が可能となれば，術中の荷重バランス調整の精度が向上し，術後の機能回復期間短縮やQOL向上への貢献が期待される．
           </p>
-          <p>
-            将来的には、このシステムがTKAの術中判断を支援し、より再現性の高い手術を実現することで、患者のQOL向上に貢献できると考えています。
-          </p>
+
         </section>
       </FadeIn>
 

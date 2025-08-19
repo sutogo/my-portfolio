@@ -1,14 +1,5 @@
 import styles from './SkillCard.module.css';
-
-// 型定義
-export type Skill = {
-  name: string;
-  icon: React.ReactNode; // ← JSX.Element から変更
-  experience: string;
-  level: number; // 1-5の5段階評価
-  description: string;
-  category: 'Web' | 'Hardware' | 'Other';
-};
+import type { Skill } from '../data/skills';
 
 
 // 星を描画するヘルパー関数

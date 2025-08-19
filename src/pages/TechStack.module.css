@@ -1,0 +1,51 @@
+.container {
+  padding: 40px 20px;
+  width: 100%;
+  max-width: 1400px; /* Widen container for columns */
+  margin: 0 auto;
+}
+
+.container h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 50px;
+}
+
+.techContainer {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  justify-content: center;
+  gap: 30px;
+}
+
+.categoryColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  flex: 1; /* Allow columns to grow */
+  min-width: 300px; /* Minimum width for a column */
+}
+
+.categoryTitle {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  padding-bottom: 10px;
+  border-bottom: 2px solid #00ffff;
+  width: 100%;
+  text-align: center;
+}
+
+.cardGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
