@@ -1,7 +1,6 @@
 import { useRef, useEffect } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 import { useGLTF, OrbitControls } from '@react-three/drei'
-import MorphingMaterial from './MorphingMaterial'
 import gsap from 'gsap'
 
 function Model() {

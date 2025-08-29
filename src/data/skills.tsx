@@ -1,6 +1,6 @@
 
-import { FaReact, FaJs, FaHtml5, FaCss3Alt, FaPython, FaJava, FaDocker, FaGithub, FaPhp, FaWrench, FaCar, FaBroadcastTower, FaSearch } from 'react-icons/fa';
-import { SiTypescript, SiRubyonrails, SiSharp, SiCplusplus } from 'react-icons/si';
+import { FaReact, FaHtml5, FaPython, FaJava, FaDocker, FaGithub, FaPhp, FaWrench, FaCar, FaBroadcastTower, FaSearch } from 'react-icons/fa';
+import { SiTypescript, SiRubyonrails, SiSharp } from 'react-icons/si';
 import { AiOutlineTool, AiFillCar } from 'react-icons/ai';
 import { BsGraphUp, BsTools, BsCpu } from 'react-icons/bs';
 
