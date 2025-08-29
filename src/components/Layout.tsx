@@ -32,10 +32,12 @@ function Layout() {
       </main>
 
       <footer className="App-footer">
-        <p>&copy; 2025 Your Name</p>
+        <p>&copy; 2025 Kosuke Tokashiki</p>
       </footer>
     </div>
   );
 }
 
 export default Layout;
+
+

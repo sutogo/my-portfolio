@@ -3,45 +3,48 @@ import FadeIn from '../components/FadeIn';
 import TechCard from '../components/TechCard';
 import { techStackData, type Tech } from '../data/techStack';
 
-const categories: Tech['category'][] = [
+const categoryOrder: Tech['category'][] = [
   'Development Environment',
   'Core Framework',
   '3D & Animation',
   'Styling',
 ];
 
-function TechStack() {
-  const groupedTechs = techStackData.reduce((acc, tech) => {
-    const category = tech.category;
-    if (!acc[category]) {
-      acc[category] = [];
-    }
-    acc[category].push(tech);
-    return acc;
-  }, {} as Record<Tech['category'], Tech[]>);
+// カテゴリごとに技術をグループ化する
+const groupedTechs = techStackData.reduce((acc, tech) => {
+  const category = tech.category;
+  if (!acc[category]) {
+    acc[category] = [];
+  }
+  acc[category].push(tech);
+  return acc;
+}, {} as Record<Tech['category'], Tech[]>);
 
+function TechStack() {
   return (
     <div className={styles.container}>
       <h1>Technology Stack</h1>
       <p className={styles.subtitle}>
-        このポートフォリオサイトの構築に使用した技術です。
+        このポートフォリオサイトを構築するために使用した技術スタックです。
       </p>
-      <div className={styles.techContainer}>
-        {categories.map((category) => (
-          <FadeIn key={category}>
-            <div className={styles.categoryColumn}>
-              <h2 className={styles.categoryTitle}>{category}</h2>
-              <div className={styles.cardGrid}>
-                {groupedTechs[category].map((tech) => (
-                  <TechCard key={tech.name} tech={tech} />
-                ))}
-              </div>
-            </div>
+
+      {categoryOrder.map(category => (
+        <div key={category} className={styles.categorySection}>
+          <FadeIn>
+            <h2 className={styles.categoryTitle}>{category}</h2>
           </FadeIn>
-        ))}
-      </div>
+          <div className={styles.cardGrid}>
+            {groupedTechs[category].map(tech => (
+              <FadeIn key={tech.name}>
+                <TechCard tech={tech} />
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
 
 export default TechStack;
+

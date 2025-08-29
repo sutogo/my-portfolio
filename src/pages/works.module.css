@@ -1,6 +1,6 @@
 .worksContainer {
   padding: 40px 20px;
-  max-width: 1100px; /* 900pxから変更 */
+  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -10,18 +10,28 @@
   margin-bottom: 40px;
 }
 
-.worksGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+/* Masonry Layout Styles */
+.masonryGrid {
+  display: flex;
+  margin-left: -30px; /* gutter size offset */
+  width: auto;
+}
+
+.masonryColumn {
+  padding-left: 30px; /* gutter size */
+  background-clip: padding-box;
+}
+
+.masonryColumn > div {
+  margin-bottom: 30px;
 }
 
 .workCard {
-  background-color: #282c34;
+  background-color: #282c34; /* 画像が読み込まれるまでの背景色 */
   border-radius: 8px;
-  padding: 20px;
-  text-align: left;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
 }
 
 .workCard:hover {
@@ -29,14 +39,10 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.workCard h3 {
-  margin-top: 0;
-  font-size: 1.5rem;
-  color: #00ffff; /* モーフィングのワイヤーフレーム色と合わせる */
-}
-
-.workCard p {
-  line-height: 1.6;
+.workImage {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .tags {
@@ -52,4 +58,41 @@
   font-size: 0.8rem;
   margin-right: 5px;
   margin-bottom: 5px;
+}
+
+/* Modal Content Styles */
+.modalImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.modalContent h2 {
+  font-size: 2rem;
+  color: #00ffff;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.modalContent p {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.githubButton {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #00ffff;
+  color: #1a1a1a;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.githubButton:hover {
+  background-color: #00cccc;
 }

@@ -1,7 +1,7 @@
 .container {
   padding: 40px 20px;
   width: 100%;
-  max-width: 1400px; /* Widen container for columns */
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -15,37 +15,25 @@
   text-align: center;
   font-size: 1.1rem;
   color: #ccc;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 }
 
-.techContainer {
-  display: flex;
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
-  justify-content: center;
-  gap: 30px;
-}
-
-.categoryColumn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  flex: 1; /* Allow columns to grow */
-  min-width: 300px; /* Minimum width for a column */
+.categorySection {
+  margin-bottom: 60px;
 }
 
 .categoryTitle {
-  font-size: 1.5rem;
-  color: var(--text-color);
+  font-size: 1.8rem;
+  margin-bottom: 25px;
   padding-bottom: 10px;
-  border-bottom: 2px solid #00ffff;
-  width: 100%;
-  text-align: center;
+  border-bottom: 1px solid #00ffff;
+  color: #00ffff;
+  text-align: left;
 }
 
 .cardGrid {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
 }
+
