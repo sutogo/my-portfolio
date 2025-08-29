@@ -44,13 +44,4 @@ const MorphingMaterial = shaderMaterial(
 
 extend({ MorphingMaterial })
 
-// 型定義（TypeScript用）
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      morphingMaterial: any
-    }
-  }
-}
-
 export default MorphingMaterial
