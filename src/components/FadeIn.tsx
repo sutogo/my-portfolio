@@ -1,5 +1,5 @@
 import { useInView } from 'react-intersection-observer';
-import styles from './FadeIn.module.css';
+import styles from './Fadein.module.css';
 
 type FadeInProps = {
   children: React.ReactNode;
