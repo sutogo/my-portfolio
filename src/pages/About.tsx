@@ -1,6 +1,8 @@
 import styles from './About.module.css';
 import Timeline from '../components/Timeline';
 import FadeIn from '../components/FadeIn';
+import { FaGithub } from 'react-icons/fa';
+import { SiWantedly } from 'react-icons/si';
 
 function About() {
   return (
@@ -15,6 +17,14 @@ function About() {
           <p>
             約3年間の社会人経験で培った課題解決能力と、幅広い技術領域への探求心で、まだ見ぬ価値を創造します。
           </p>
+          <div className={styles.linkButtons}>
+            <a href="https://github.com/sutogo" target="_blank" rel="noopener noreferrer" className={`${styles.iconButton} ${styles.githubButton}`}>
+              <FaGithub /> GitHub
+            </a>
+            <a href="https://www.wantedly.com/id/KHO" target="_blank" rel="noopener noreferrer" className={`${styles.iconButton} ${styles.wantedlyButton}`}>
+              <SiWantedly /> Wantedly
+            </a>
+          </div>
         </section>
       </FadeIn>
       

@@ -1,4 +1,3 @@
-
 export const worksData = [
   {
     title: '大学構内施設の予約システム',
@@ -29,7 +28,7 @@ export const worksData = [
     imageUrl: '/Ba_Tr.png', 
   },
   {
-    title: '人工膝関節運動力学シミュレーター',
+    title: '人工膝関節運動力学<br />シミュレーター',
     description: '関節の運動力学をシミュレートするためのPythonアプリケーションです。 特定の屈曲角度における膝の安定した3次元的な姿勢（内外反・内外旋）を、ポテンシャルエネルギー最小化の手法を用いて計算します。 シミュレーション結果として、各屈曲角度での関節角度、靭帯（内側側副靭帯、外側側副靭帯、膝蓋靭帯）の張力、および関節面にかかる接触力を算出し、グラフとして可視化します。',
     tags: ['Python', 'Simulation', 'Medical', 'Biomechanics'],
     githubUrl: 'https://github.com/sutogo/Knee-joint-simulation',
