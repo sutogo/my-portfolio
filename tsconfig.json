@@ -1,4 +1,12 @@
 {
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "moduleResolution": "bundler",
+    "skipLibCheck": true
+  },
   "include": ["src/types/global.d.ts"],
   "references": [
     { "path": "./tsconfig.app.json" },
