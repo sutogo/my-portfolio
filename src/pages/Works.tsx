@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from './Works.module.css';
+import styles from './works.module.css';
 import FadeIn from '../components/FadeIn';
 import { worksData } from '../data/works';
 import Modal from '../components/Modal';
