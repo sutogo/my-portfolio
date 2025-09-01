@@ -1,3 +1,5 @@
+/// <reference path="../types/global.d.ts" />
+
 import { useRef, useEffect } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 import { useGLTF, OrbitControls } from '@react-three/drei'
