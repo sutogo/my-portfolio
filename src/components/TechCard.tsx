@@ -1,12 +1,16 @@
 import styles from './TechCard.module.css';
 import type { Tech } from '../data/techStack';
 
-function TechCard({ tech }: { tech: Tech }) {
+type Props = {
+  tech: Tech;
+};
+
+function TechCard({ tech }: Props) {
   return (
     <div className={styles.card}>
-      <div className={styles.header}>
+      <div className={styles.cardHeader}>
         <span className={styles.icon}>{tech.icon}</span>
-        <h3 className={styles.title}>{tech.name}</h3>
+        <h4 className={styles.name}>{tech.name}</h4>
       </div>
       <p className={styles.description}>{tech.description}</p>
     </div>

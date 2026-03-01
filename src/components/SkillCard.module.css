@@ -1,40 +1,61 @@
 .card {
-  background-color: #282c34;
-  border-radius: 8px;
-  padding: 25px;
-  text-align: left;
-  height: 100%;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  transition: all var(--transition-normal);
 }
 
-.header {
+.card:hover {
+  border-color: var(--color-border-accent);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+.cardHeader {
   display: flex;
   align-items: center;
-  gap: 15px;
-  margin-bottom: 15px;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
 }
 
 .icon {
-  font-size: 2.5rem;
-  color: #00ffff;
+  font-size: 1.8rem;
+  color: var(--color-accent-primary);
+  display: flex;
+  align-items: center;
 }
 
-.title {
-  font-size: 1.5rem;
-  margin: 0;
+.name {
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
 }
 
-.meta {
-  font-size: 0.9rem;
-  color: #ccc;
-  margin-bottom: 15px;
+.experience {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
 }
 
-.stars {
-  color: #f0e68c; /* 星の色 */
-  letter-spacing: 2px;
+.progressBar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-md);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--color-accent-gradient);
+  border-radius: var(--radius-full);
+  transition: width 0.8s var(--ease-out-expo);
 }
 
 .description {
-  font-size: 0.95rem;
+  font-size: var(--text-sm);
   line-height: 1.7;
+  color: var(--color-text-secondary);
 }

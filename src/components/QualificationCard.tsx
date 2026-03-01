@@ -1,13 +1,15 @@
 import styles from './QualificationCard.module.css';
 import type { Qualification } from '../data/skills';
 
-function QualificationCard({ qualification }: { qualification: Qualification }) {
+type Props = {
+  qualification: Qualification;
+};
+
+function QualificationCard({ qualification }: Props) {
   return (
     <div className={styles.card}>
-      <div className={styles.header}>
-        <span className={styles.icon}>{qualification.icon}</span>
-        <h3 className={styles.title}>{qualification.name}</h3>
-      </div>
+      <span className={styles.icon}>{qualification.icon}</span>
+      <span className={styles.name}>{qualification.name}</span>
     </div>
   );
 }

@@ -17,7 +17,7 @@ export const worksData = [
     title: '数理計算プログラム',
     description: '特定の数学的問題を効率的に解くための計算アルゴリズムを実装しました。',
     tags: ['Java', 'Algorithm'],
-    githubUrl: 'https://github.com/your-username/math-solver',
+    githubUrl: '',
     imageUrl: '', 
   },
   {
