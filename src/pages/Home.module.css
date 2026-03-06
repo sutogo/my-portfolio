@@ -1,22 +1,158 @@
-.homeContainer {
-  /* 親要素を相対位置に設定（子要素を絶対位置で配置するため） */
+.heroContainer {
   position: relative;
   width: 100%;
-  height: 80vh; /* 3Dシーンの高さと合わせる */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.canvasWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.35;
+}
+
+.modelCaption {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  opacity: 0.5;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: var(--space-xl);
+  max-width: 800px;
+}
+
+.greeting {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-accent-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-size: var(--text-hero);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-lg);
+  letter-spacing: -0.03em;
+}
+
+.nameAccent {
+  background: var(--color-accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .catchphrase {
-  /* テキストを親要素の中央に配置 */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  margin-bottom: var(--space-md);
+}
 
-  /* 見た目の調整 */
-  color: white;
-  font-size: 3rem;
-  font-weight: bold;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* 文字を読みやすくするための影 */
-  pointer-events: none; /* テキストが下の3Dモデルのマウス操作を妨げないようにする */
-  line-height: 1.5;
+.subtitle {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2xl);
+}
+
+.heroCta {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+}
+
+.ctaPrimary {
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: 600;
+  padding: var(--space-md) var(--space-2xl);
+  background: var(--color-accent-gradient);
+  color: var(--color-bg-primary);
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  letter-spacing: 0.02em;
+  animation: ctaPulse 3s ease-in-out infinite;
+}
+
+.ctaPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-strong);
+  animation: none;
+}
+
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.3); }
+  50% { box-shadow: 0 0 20px 4px rgba(0, 229, 255, 0.15); }
+}
+
+/* Scroll Indicator */
+.scrollIndicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  z-index: 1;
+}
+
+.scrollLine {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--color-accent-primary), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+.scrollText {
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .catchphrase {
+    font-size: var(--text-xl);
+  }
+
+  .subtitle {
+    font-size: var(--text-base);
+  }
+
+  .modelCaption {
+    display: none;
+  }
 }

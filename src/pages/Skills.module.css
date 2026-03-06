@@ -1,4 +1,4 @@
-.container {
+.skillsContainer {
   padding: var(--space-section) var(--space-xl);
   max-width: var(--max-width);
   margin: 0 auto;
@@ -17,17 +17,11 @@
 .sectionTitle {
   font-size: var(--text-3xl);
   font-weight: 800;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-3xl);
   background: var(--color-accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-.subtitle {
-  font-size: var(--text-base);
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-3xl);
 }
 
 .categorySection {
@@ -36,26 +30,33 @@
 
 .categoryTitle {
   font-family: var(--font-heading);
-  font-size: var(--text-lg);
+  font-size: var(--text-xl);
   font-weight: 700;
-  color: var(--color-accent-primary);
+  color: var(--color-text-primary);
   margin-bottom: var(--space-lg);
   padding-bottom: var(--space-sm);
   border-bottom: 1px solid var(--color-border);
 }
 
-.cardGrid {
+.skillsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-md);
+}
+
+.qualGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: var(--space-md);
 }
 
 @media (max-width: 768px) {
-  .container {
+  .skillsContainer {
     padding: var(--space-3xl) var(--space-md);
   }
 
-  .cardGrid {
+  .skillsGrid,
+  .qualGrid {
     grid-template-columns: 1fr;
   }
 }

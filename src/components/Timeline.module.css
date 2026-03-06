@@ -1,98 +1,90 @@
-.timelineContainer {
+.timeline {
   position: relative;
-  width: 100%;
-  margin: 40px 0;
-}
-
-/* タイムラインの中央線 */
-.timelineContainer::after {
-  content: '';
-  position: absolute;
-  width: 2px;
-  background-color: #00ffff;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  margin-left: -1px;
+  padding-left: var(--space-2xl);
 }
 
 .timelineItem {
-  padding: 10px 15px;
+  display: flex;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-2xl);
   position: relative;
-  width: 50%;
 }
 
-/* タイムライン上の丸 */
-.timelineDot {
-  content: '';
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  background-color: var(--background-color);
-  border: 2px solid #00ffff;
-  top: 28px;
+.timelineMarker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.markerDot {
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
+  background: var(--color-accent-gradient);
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
+  flex-shrink: 0;
+  position: relative;
   z-index: 1;
 }
 
-/* 左側のアイテム */
-.left {
-  left: 0;
-}
-.left .timelineDot {
-  right: -8px;
-}
-
-/* 右側のアイテム */
-.right {
-  left: 50%;
-}
-.right .timelineDot {
-  left: -8px;
+.markerLine {
+  width: 2px;
+  flex-grow: 1;
+  background: linear-gradient(to bottom, var(--color-accent-primary), rgba(0, 229, 255, 0.1));
+  margin-top: var(--space-sm);
 }
 
 .timelineContent {
-  width: 500px;
-  padding: 20px 30px;
-  background-color: #282c34;
-  position: relative;
-  border-radius: 6px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl);
+  flex: 1;
+  transition: all var(--transition-normal);
 }
 
-.timelineContent h3 {
-  margin-top: 0;
-  color: #00ffff;
+.timelineContent:hover {
+  border-color: var(--color-border-accent);
+  box-shadow: var(--shadow-glow);
 }
 
 .timelineDate {
-  font-size: 0.9rem;
-  font-weight: bold;
-  color: #ccc;
-  margin-bottom: 10px;
-  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-accent-primary);
+  letter-spacing: 0.05em;
 }
 
+.timelineTitle {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-top: var(--space-xs);
+  margin-bottom: var(--space-xs);
+}
 
+.timelineSubtitle {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-accent-secondary, #7c4dff);
+  margin-bottom: var(--space-sm);
+}
 
-/* 画面幅が768px以下の場合に適用 */
+.timelineDescription {
+  font-size: var(--text-sm);
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
 @media (max-width: 768px) {
-  /* 中央線を左端に移動 */
-  .timelineContainer::after {
-    left: 8px;
+  .timeline {
+    padding-left: var(--space-md);
   }
 
-  /* 全てのアイテムを左側に配置 */
-  .timelineItem {
-    width: 100%;
-    padding-left: 40px;
-    padding-right: 15px;
-  }
-  .left, .right {
-    left: 0%;
-  }
-
-  /* 丸の位置を調整 */
-  .left .timelineDot, .right .timelineDot {
-    left: 0;
+  .timelineContent {
+    padding: var(--space-lg);
   }
 }

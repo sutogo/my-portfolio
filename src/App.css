@@ -1,79 +1,51 @@
-/* General App Layout */
+/* App Layout */
 .App {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
 }
 
-.App-main {
-  flex-grow: 1; /* Push footer to the bottom */
+.App main section {
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  padding: 20px;
+  position: relative;
 }
 
+.App main section:first-child {
+  /* Home section - full viewport */
+  min-height: 100vh;
+}
+
+/* Alternate section backgrounds for visual separation */
+.App main section:nth-child(even) {
+  background: rgba(0, 229, 255, 0.015);
+}
+
+/* Section divider lines */
+.App main section + section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(80%, 600px);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-border-accent) 30%,
+    var(--color-accent-primary) 50%,
+    var(--color-border-accent) 70%,
+    transparent
+  );
+  opacity: 0.5;
+}
+
+/* Footer */
 .App-footer {
-  padding: 20px;
-  background-color: #282c34;
-}
-
-/* Side Navigation Panel */
-.side-nav {
-  height: 100%;
-  width: 280px; /* Width of the side panel */
-  position: fixed;
-  z-index: 1300; /* On top of everything */
-  top: 0;
-  right: -280px; /* Start off-screen */
-  background-color: rgba(26, 26, 26, 0.9);
-  backdrop-filter: blur(10px);
-  overflow-x: hidden;
-  transition: right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  padding-top: 80px; /* Space for the close button */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 25px;
-}
-
-.side-nav.open {
-  right: 0; /* Slide in */
-}
-
-.side-nav a {
-  padding: 10px 15px;
-  text-decoration: none;
-  font-size: 1.5rem; /* Larger font for side nav */
-  color: var(--text-color);
-  display: block;
-  transition: 0.3s;
-  width: 80%;
+  padding: var(--space-xl);
   text-align: center;
-  border-radius: 8px;
-}
-
-.side-nav a:hover {
-  color: #1a1a1a;
-  background-color: #00ffff;
-}
-
-.side-nav a.active {
-  color: #1a1a1a;
-  background-color: #00ffff;
-  font-weight: bold;
-}
-
-/* Overlay */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1050; /* Below nav, above content */
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
 }
