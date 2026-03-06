@@ -1,8 +1,16 @@
 import styles from './About.module.css';
 import Timeline from '../components/Timeline';
 import FadeIn from '../components/FadeIn';
+import MetricsCard from '../components/MetricsCard';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { SiWantedly } from 'react-icons/si';
+
+const metrics = [
+  { value: '57', suffix: '%', label: '測定工数削減' },
+  { value: '10', suffix: '+', label: '新規ライン立上げ' },
+  { value: '3', suffix: '', label: 'カ国での活動' },
+  { value: '2026', suffix: '', label: 'WCB 国際学会' },
+];
 
 function About() {
   return (
@@ -14,6 +22,8 @@ function About() {
           作れるシステムがある．
         </h2>
       </FadeIn>
+
+      <MetricsCard metrics={metrics} />
 
       <FadeIn delay={0.2}>
         <div className={styles.introCard}>

@@ -8,11 +8,37 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .App main section:first-child {
   /* Home section - full viewport */
   min-height: 100vh;
+}
+
+/* Alternate section backgrounds for visual separation */
+.App main section:nth-child(even) {
+  background: rgba(0, 229, 255, 0.015);
+}
+
+/* Section divider lines */
+.App main section + section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(80%, 600px);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-border-accent) 30%,
+    var(--color-accent-primary) 50%,
+    var(--color-border-accent) 70%,
+    transparent
+  );
+  opacity: 0.5;
 }
 
 /* Footer */

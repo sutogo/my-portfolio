@@ -51,7 +51,7 @@
   height: 100%;
   background: var(--color-accent-gradient);
   border-radius: var(--radius-full);
-  transition: width 0.8s var(--ease-out-expo);
+  transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .description {

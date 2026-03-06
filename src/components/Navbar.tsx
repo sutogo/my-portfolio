@@ -8,6 +8,7 @@ const navItems = [
   { id: 'skills', label: 'Skills' },
   { id: 'works', label: 'Works' },
   { id: 'tech-stack', label: 'Tech Stack' },
+  { id: 'vision', label: 'Vision' },
   { id: 'contact', label: 'Contact' },
 ];
 
@@ -66,7 +67,6 @@ function Navbar() {
                   onClick={() => scrollToSection(item.id)}
                 >
                   {item.label}
-                  {activeSection === item.id && <span className={styles.activeIndicator} />}
                 </button>
               </li>
             ))}

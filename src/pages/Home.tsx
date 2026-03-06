@@ -13,6 +13,7 @@ function Home() {
       {/* 3D Background */}
       <div className={styles.canvasWrapper}>
         <KneeScene />
+        <span className={styles.modelCaption}>Knee Joint 3D Model — 研究対象</span>
       </div>
 
       {/* Hero Content */}

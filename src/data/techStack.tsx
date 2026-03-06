@@ -1,5 +1,5 @@
 import { FaReact, FaDocker, FaCss3Alt } from 'react-icons/fa';
-import { SiTypescript, SiVite, SiThreedotjs, SiGreensock, SiReactrouter } from 'react-icons/si';
+import { SiTypescript, SiVite, SiThreedotjs, SiGreensock } from 'react-icons/si';
 
 export type Tech = {
   name: string;
@@ -38,12 +38,6 @@ export const techStackData: Tech[] = [
     icon: <SiGreensock />,
     description: 'GreenSock Animation Platform。3Dモデルのカメラワークや登場アニメーションなど、複雑で滑らかな動きを実装するために使用しました。',
     category: '3D & Animation',
-  },
-  {
-    name: 'React Router',
-    icon: <SiReactrouter />,
-    description: 'SPA（シングルページアプリケーション）としてのページ遷移を管理。URLに応じたコンポーネントの表示切り替えを行っています。',
-    category: 'Core Framework',
   },
   {
     name: 'CSS Modules',
