@@ -4,22 +4,26 @@ import FadeIn from '../components/FadeIn';
 import MetricsCard from '../components/MetricsCard';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { SiWantedly } from 'react-icons/si';
-
-const metrics = [
-  { value: '57', suffix: '%', label: '測定工数削減' },
-  { value: '10', suffix: '+', label: '新規ライン立上げ' },
-  { value: '3', suffix: '', label: 'カ国での活動' },
-  { value: '2026', suffix: '', label: 'WCB 国際学会' },
-];
+import { useLang } from '../i18n/LangContext';
 
 function About() {
+  const { t } = useLang();
+
+  const metrics = [
+    { value: '57', suffix: '%', label: t('about.metric.reduction') },
+    { value: '10', suffix: '+', label: t('about.metric.lines') },
+    { value: '3', suffix: '', label: t('about.metric.countries') },
+    { value: '2026', suffix: '', label: t('about.metric.wcb') },
+  ];
+
   return (
     <div className={styles.aboutContainer}>
       <FadeIn>
-        <p className={styles.sectionLabel}>About Me</p>
+        <p className={styles.sectionLabel}>{t('about.label')}</p>
         <h2 className={styles.sectionTitle}>
-          「現場の痛み」を知っているからこそ，<br />
-          作れるシステムがある．
+          {t('about.title').split('\n').map((line, i) => (
+            <span key={i}>{line}{i === 0 && <br />}</span>
+          ))}
         </h2>
       </FadeIn>
 
@@ -28,14 +32,16 @@ function About() {
       <FadeIn delay={0.2}>
         <div className={styles.introCard}>
           <p className={styles.introText}>
-            福岡工業大学大学院（M1）にて，<strong>医工学（バイオメカニクス）</strong>とIoTシステムを専攻．
-            自動車部品メーカーでの品質検査員として
-            <span className={styles.highlight}>「月間160時間の工数削減」</span>
-            を達成した後，「不具合を見つける側」から「根本的な仕組みを創る側」への転身を決意し，大学へ編入．
+            {t('about.intro1').split('{bio}')[0]}
+            <strong>{t('about.intro1.bio')}</strong>
+            {t('about.intro1').split('{bio}')[1]?.split('{highlight}')[0]}
+            <span className={styles.highlight}>{t('about.intro1.highlight')}</span>
+            {t('about.intro1').split('{highlight}')[1]}
           </p>
           <p className={styles.introText}>
-            旋盤・溶接といった物理的な「ハードウェア実装力」と，C#(.NET)を用いた「ソフトウェア開発力」の双方を併せ持つ，
-            二刀流のエンジニアとして，<strong>CPS（Cyber-Physical System）の社会実装</strong>を目指しています．
+            {t('about.intro2').split('{cps}')[0]}
+            <strong>{t('about.intro2.cps')}</strong>
+            {t('about.intro2').split('{cps}')[1]}
           </p>
           <div className={styles.linkButtons}>
             <a href="https://github.com/sutogo" target="_blank" rel="noopener noreferrer" className={styles.iconButton}>
@@ -52,7 +58,7 @@ function About() {
       </FadeIn>
 
       <FadeIn delay={0.1}>
-        <h3 className={styles.timelineTitle}>Career & Education</h3>
+        <h3 className={styles.timelineTitle}>{t('about.timelineTitle')}</h3>
       </FadeIn>
       <Timeline />
     </div>

@@ -1,8 +1,11 @@
 import KneeScene from '../components/KneeScene';
 import styles from './Home.module.css';
 import FadeIn from '../components/FadeIn';
+import { useLang } from '../i18n/LangContext';
 
 function Home() {
+  const { t } = useLang();
+
   const scrollToAbout = () => {
     const el = document.getElementById('about');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -13,14 +16,14 @@ function Home() {
       {/* 3D Background */}
       <div className={styles.canvasWrapper}>
         <KneeScene />
-        <span className={styles.modelCaption}>Knee Joint 3D Model — 研究対象</span>
+        <span className={styles.modelCaption}>{t('home.modelCaption')}</span>
       </div>
 
       {/* Hero Content */}
       <div className={styles.heroContent}>
         <FadeIn delay={0.3}>
           <p className={styles.greeting}>
-            Engineering Portfolio
+            {t('home.greeting')}
           </p>
         </FadeIn>
 
@@ -32,20 +35,22 @@ function Home() {
 
         <FadeIn delay={0.9}>
           <p className={styles.catchphrase}>
-            コードで思考し，<br />鉄で具現化する．
+            {t('home.catchphrase').split('\n').map((line, i) => (
+              <span key={i}>{line}{i === 0 && <br />}</span>
+            ))}
           </p>
         </FadeIn>
 
         <FadeIn delay={1.2}>
           <p className={styles.subtitle}>
-            フィジカルとデジタルを繋ぐ「ブリッジエンジニア」
+            {t('home.subtitle')}
           </p>
         </FadeIn>
 
         <FadeIn delay={1.5}>
           <div className={styles.heroCta}>
             <button className={styles.ctaPrimary} onClick={scrollToAbout}>
-              View My Work
+              {t('home.cta')}
             </button>
           </div>
         </FadeIn>
@@ -54,7 +59,7 @@ function Home() {
       {/* Scroll indicator */}
       <div className={styles.scrollIndicator}>
         <div className={styles.scrollLine} />
-        <span className={styles.scrollText}>Scroll</span>
+        <span className={styles.scrollText}>{t('home.scroll')}</span>
       </div>
     </div>
   );

@@ -3,15 +3,18 @@ import FadeIn from '../components/FadeIn';
 import SkillCard from '../components/SkillCard';
 import QualificationCard from '../components/QualificationCard';
 import { skillsData, qualificationsData } from '../data/skills';
+import { useLang } from '../i18n/LangContext';
 
 const categories = ['Web', 'Hardware', 'Other'] as const;
 
 function Skills() {
+  const { t } = useLang();
+
   return (
     <div className={styles.skillsContainer}>
       <FadeIn>
-        <p className={styles.sectionLabel}>Skills & Qualifications</p>
-        <h2 className={styles.sectionTitle}>技術スタック</h2>
+        <p className={styles.sectionLabel}>{t('skills.label')}</p>
+        <h2 className={styles.sectionTitle}>{t('skills.title')}</h2>
       </FadeIn>
 
       {categories.map((category) => {
@@ -34,7 +37,7 @@ function Skills() {
       })}
 
       <FadeIn>
-        <h3 className={styles.categoryTitle}>Qualifications</h3>
+        <h3 className={styles.categoryTitle}>{t('skills.qualTitle')}</h3>
       </FadeIn>
       <div className={styles.qualGrid}>
         {qualificationsData.map((qualification, index) => (

@@ -3,10 +3,12 @@ import styles from './Works.module.css';
 import FadeIn from '../components/FadeIn';
 import { worksData } from '../data/works';
 import Modal from '../components/Modal';
+import { useLang } from '../i18n/LangContext';
 
 type Work = (typeof worksData)[0] & { githubUrl?: string; imageUrl?: string };
 
 function Works() {
+  const { t } = useLang();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedWork, setSelectedWork] = useState<Work | null>(null);
 
@@ -23,10 +25,10 @@ function Works() {
   return (
     <div className={styles.worksContainer}>
       <FadeIn>
-        <p className={styles.sectionLabel}>Works</p>
-        <h2 className={styles.sectionTitle}>プロジェクト</h2>
+        <p className={styles.sectionLabel}>{t('works.label')}</p>
+        <h2 className={styles.sectionTitle}>{t('works.title')}</h2>
         <p className={styles.sectionSubtitle}>
-          これまでに手がけたプロジェクトの一部をご紹介します
+          {t('works.subtitle')}
         </p>
       </FadeIn>
 

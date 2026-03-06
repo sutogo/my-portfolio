@@ -2,6 +2,7 @@ import styles from './TechStack.module.css';
 import FadeIn from '../components/FadeIn';
 import TechCard from '../components/TechCard';
 import { techStackData, type Tech } from '../data/techStack';
+import { useLang } from '../i18n/LangContext';
 
 const categoryOrder: Tech['category'][] = [
   'Development Environment',
@@ -20,13 +21,15 @@ const groupedTechs = techStackData.reduce((acc, tech) => {
 }, {} as Record<Tech['category'], Tech[]>);
 
 function TechStack() {
+  const { t } = useLang();
+
   return (
     <div className={styles.container}>
       <FadeIn>
-        <p className={styles.sectionLabel}>Tech Stack</p>
-        <h2 className={styles.sectionTitle}>使用技術</h2>
+        <p className={styles.sectionLabel}>{t('techStack.label')}</p>
+        <h2 className={styles.sectionTitle}>{t('techStack.title')}</h2>
         <p className={styles.subtitle}>
-          このポートフォリオサイトを構築するために使用した技術スタックです
+          {t('techStack.subtitle')}
         </p>
       </FadeIn>
 

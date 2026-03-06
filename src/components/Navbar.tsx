@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react';
 import styles from './Navbar.module.css';
+import { useLang } from '../i18n/LangContext';
 
-const navItems = [
-  { id: 'home', label: 'Home' },
-  { id: 'about', label: 'About' },
-  { id: 'research', label: 'Research' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'works', label: 'Works' },
-  { id: 'tech-stack', label: 'Tech Stack' },
-  { id: 'vision', label: 'Vision' },
-  { id: 'contact', label: 'Contact' },
+const navKeys = [
+  { id: 'home', key: 'nav.home' },
+  { id: 'about', key: 'nav.about' },
+  { id: 'research', key: 'nav.research' },
+  { id: 'skills', key: 'nav.skills' },
+  { id: 'works', key: 'nav.works' },
+  { id: 'tech-stack', key: 'nav.techStack' },
+  { id: 'vision', key: 'nav.vision' },
+  { id: 'contact', key: 'nav.contact' },
 ];
 
 function Navbar() {
+  const { lang, toggleLang, t } = useLang();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -21,14 +23,13 @@ function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
 
-      // Determine active section
-      const sections = navItems.map(item => document.getElementById(item.id));
+      const sections = navKeys.map(item => document.getElementById(item.id));
       const scrollPos = window.scrollY + window.innerHeight / 3;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
         if (section && section.offsetTop <= scrollPos) {
-          setActiveSection(navItems[i].id);
+          setActiveSection(navKeys[i].id);
           break;
         }
       }
@@ -60,27 +61,45 @@ function Navbar() {
           </button>
 
           <ul className={styles.navLinks}>
-            {navItems.map(item => (
+            {navKeys.map(item => (
               <li key={item.id}>
                 <button
                   className={`${styles.navLink} ${activeSection === item.id ? styles.active : ''}`}
                   onClick={() => scrollToSection(item.id)}
                 >
-                  {item.label}
+                  {t(item.key)}
                 </button>
               </li>
             ))}
+            <li>
+              <button
+                className={styles.langToggle}
+                onClick={toggleLang}
+                aria-label="Toggle language"
+              >
+                {lang === 'ja' ? 'EN' : 'JA'}
+              </button>
+            </li>
           </ul>
 
-          <button
-            className={`${styles.hamburger} ${isMobileOpen ? styles.hamburgerOpen : ''}`}
-            onClick={() => setIsMobileOpen(!isMobileOpen)}
-            aria-label="Toggle menu"
-          >
-            <span className={styles.bar} />
-            <span className={styles.bar} />
-            <span className={styles.bar} />
-          </button>
+          <div className={styles.mobileControls}>
+            <button
+              className={styles.langToggle}
+              onClick={toggleLang}
+              aria-label="Toggle language"
+            >
+              {lang === 'ja' ? 'EN' : 'JA'}
+            </button>
+            <button
+              className={`${styles.hamburger} ${isMobileOpen ? styles.hamburgerOpen : ''}`}
+              onClick={() => setIsMobileOpen(!isMobileOpen)}
+              aria-label="Toggle menu"
+            >
+              <span className={styles.bar} />
+              <span className={styles.bar} />
+              <span className={styles.bar} />
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -92,13 +111,13 @@ function Navbar() {
       {/* Mobile menu */}
       <div className={`${styles.mobileMenu} ${isMobileOpen ? styles.mobileMenuOpen : ''}`}>
         <ul className={styles.mobileLinks}>
-          {navItems.map((item, index) => (
+          {navKeys.map((item, index) => (
             <li key={item.id} style={{ transitionDelay: `${index * 50}ms` }}>
               <button
                 className={`${styles.mobileLink} ${activeSection === item.id ? styles.active : ''}`}
                 onClick={() => scrollToSection(item.id)}
               >
-                {item.label}
+                {t(item.key)}
               </button>
             </li>
           ))}
