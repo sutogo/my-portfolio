@@ -1,33 +1,46 @@
 
-export const timelineData = [
+export type TimelineItem = {
+  date: string;
+  titleKey: string;
+  subtitleKey: string;
+  descriptionKey: string;
+};
+
+export const timelineData: TimelineItem[] = [
   {
     date: '2015.4 - 2018.3',
-    title: '工業高等学校（自動車科）',
-    subtitle: '【The Origin】エンジニアとしての原体験',
-    description: '自動車工学の基礎を学び，3級自動車整備士の技能を習得．廃車のスクーターエンジンをOHして流用し，TIG溶接やアッカーマン機構の組み付けを行い，ゼロから「三輪バギー」をチームで製作．',
+    titleKey: 'timeline.highschool.title',
+    subtitleKey: 'timeline.highschool.subtitle',
+    descriptionKey: 'timeline.highschool.desc',
   },
   {
     date: '2018.4 - 2020.3',
-    title: 'アイシングループ（自動車部品メーカー）',
-    subtitle: '【The Professional】徹底した現場改善と品質へのこだわり',
-    description: 'ブレーキ（ABS/ESC）の検査員として従事．三次元測定機の自動化を推進し，月間280時間→120時間へ測定工数を57%削減．QCサークルのサブリーダーとしても組織をけん引．',
+    titleKey: 'timeline.advics.title',
+    subtitleKey: 'timeline.advics.subtitle',
+    descriptionKey: 'timeline.advics.desc',
   },
   {
     date: '2021.3 - 2021.8',
-    title: '株式会社トラジェクトリー（長崎・対馬）',
-    subtitle: '【The Pioneer】0→1の立ち上げと，カオスの形式知化',
-    description: '官民一体のドローン運用プロジェクトに新規事務所の立ち上げメンバーとして参画．遠隔管制システムや運用ルールの整備・マニュアル作成を行い，退職後も運用される「仕組み」を構築．',
+    titleKey: 'timeline.trajectory.title',
+    subtitleKey: 'timeline.trajectory.subtitle',
+    descriptionKey: 'timeline.trajectory.desc',
   },
   {
     date: '2022.4 - 2024.3',
-    title: '福岡工業大学短期大学部（情報メディア学科）',
-    subtitle: '【The Pivot】ソフトウェアと論理の世界へ',
-    description: 'プログラミングと情報工学を学び4年制大学へ編入．Unity-MATLAB連携によるADASシミュレーション環境を構築し学長賞を受賞．FIT EV Formula Car Project創設，FIT隊幹部メンバー．',
+    titleKey: 'timeline.short.title',
+    subtitleKey: 'timeline.short.subtitle',
+    descriptionKey: 'timeline.short.desc',
   },
   {
-    date: '2024.4 - Present',
-    title: '福岡工業大学 / 大学院（情報システム工学専攻）',
-    subtitle: '【The Integration】ハードとソフトの融合，そして世界へ',
-    description: 'TKAにおけるリアルタイム動的荷重計測システムの開発に従事．WCB 2026（バンクーバー）にてポスター発表予定．FIT-Techプログラムメンバーとして国内外の学術大会に参加．',
+    date: '2024.4 - 2026.3',
+    titleKey: 'timeline.university.title',
+    subtitleKey: 'timeline.university.subtitle',
+    descriptionKey: 'timeline.university.desc',
+  },
+  {
+    date: '2026.4 - Present',
+    titleKey: 'timeline.grad.title',
+    subtitleKey: 'timeline.grad.subtitle',
+    descriptionKey: 'timeline.grad.desc',
   },
 ];

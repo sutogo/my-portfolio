@@ -1,8 +1,11 @@
 import styles from './Timeline.module.css';
 import FadeIn from './FadeIn';
 import { timelineData } from '../data/timeline';
+import { useLang } from '../i18n/LangContext';
 
 function Timeline() {
+  const { t } = useLang();
+
   return (
     <div className={styles.timeline}>
       {timelineData.map((item, index) => (
@@ -14,13 +17,9 @@ function Timeline() {
             </div>
             <div className={styles.timelineContent}>
               <span className={styles.timelineDate}>{item.date}</span>
-              <h4 className={styles.timelineTitle}>{item.title}</h4>
-              {'subtitle' in item && item.subtitle && (
-                <p className={styles.timelineSubtitle}>{item.subtitle}</p>
-              )}
-              {item.description && (
-                <p className={styles.timelineDescription}>{item.description}</p>
-              )}
+              <h4 className={styles.timelineTitle}>{t(item.titleKey)}</h4>
+              <p className={styles.timelineSubtitle}>{t(item.subtitleKey)}</p>
+              <p className={styles.timelineDescription}>{t(item.descriptionKey)}</p>
             </div>
           </div>
         </FadeIn>
