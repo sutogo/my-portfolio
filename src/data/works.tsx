@@ -1,4 +1,4 @@
-import { FaCarSide, FaCogs, FaHeartbeat } from 'react-icons/fa';
+import { FaCarSide, FaCogs, FaCompass, FaHeartbeat } from 'react-icons/fa';
 
 // 文言は辞書（LangContext）の works.<id>.* にある
 export type Work = {
@@ -31,22 +31,40 @@ export const worksData: Work[] = [
     featured: true,
   },
   {
+    id: 'seminarQa',
+    tags: ['Python', 'FastAPI', 'WebSocket', 'Claude'],
+    githubUrl: 'https://github.com/sutogo/seminar-qa-',
+    imageUrl: '/seminar_qa.png',
+  },
+  {
+    id: 'mysteryWalk',
+    tags: ['Kotlin', 'Jetpack Compose', 'Android', 'Claude'],
+    githubUrl: 'https://github.com/sutogo/MysteryWalkApp',
+    icon: <FaCompass />,
+  },
+  {
+    id: 'timeVisible',
+    tags: ['Python', 'Flask', 'Scraping', 'Docker', 'Claude'],
+    githubUrl: 'https://github.com/sutogo/Time_visible_FIT',
+    imageUrl: '/time_visible_fit.png',
+  },
+  {
     id: 'kneeSim',
     tags: ['Python', 'Simulation', 'Biomechanics'],
     githubUrl: 'https://github.com/sutogo/Knee-joint-simulation',
     imageUrl: '/simulation_results.png',
   },
   {
+    id: 'reservation',
+    tags: ['Python', 'Flet', 'SQLite', 'Docker'],
+    githubUrl: 'https://github.com/sutogo/Reservation_System',
+    imageUrl: '/Reservation_System.png',
+  },
+  {
     id: 'ballistic',
     tags: ['Python', 'Simulation'],
     githubUrl: 'https://github.com/sutogo/Ballistic_Trajectory',
     imageUrl: '/Ba_Tr.png',
-  },
-  {
-    id: 'reservation',
-    tags: ['Python', 'Web'],
-    githubUrl: 'https://github.com/sutogo/Reservation_System',
-    imageUrl: '/Reservation_System.png',
   },
   {
     id: 'memory',

@@ -76,6 +76,8 @@
 
 .visual {
   aspect-ratio: 16 / 9;
+  /* これがないと縦長の画像が 16:9 の枠を押し広げる */
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
