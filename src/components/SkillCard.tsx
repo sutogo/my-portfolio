@@ -1,12 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './SkillCard.module.css';
 import type { Skill } from '../data/skills';
+import { useLang } from '../i18n/LangContext';
 
 type Props = {
   skill: Skill;
 };
 
 function SkillCard({ skill }: Props) {
+  const { t, lang } = useLang();
+  const years =
+    lang === 'ja'
+      ? skill.years === 0 ? '1年未満' : `${skill.years}年`
+      : skill.years === 0 ? '< 1 yr' : `${skill.years} yr${skill.years > 1 ? 's' : ''}`;
   const cardRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -33,8 +39,8 @@ function SkillCard({ skill }: Props) {
       <div className={styles.cardHeader}>
         <span className={styles.icon}>{skill.icon}</span>
         <div>
-          <h4 className={styles.name}>{skill.name}</h4>
-          <span className={styles.experience}>{skill.experience}</span>
+          <h4 className={styles.name}>{t(`skills.${skill.id}.name`)}</h4>
+          <span className={styles.experience}>{years}</span>
         </div>
       </div>
       <div className={styles.progressBar}>
@@ -45,7 +51,7 @@ function SkillCard({ skill }: Props) {
           }}
         />
       </div>
-      <p className={styles.description}>{skill.description}</p>
+      <p className={styles.description}>{t(`skills.${skill.id}.desc`)}</p>
     </div>
   );
 }

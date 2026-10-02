@@ -7,6 +7,9 @@ import gsap from 'gsap'
 
 function Model() {
   const { nodes } = useGLTF('/born_knee.glb')
+  const geometry = (nodes['tripo_node_19239756-3b32-4ebf-b5a8-a8ef441171cd'] as any).geometry
+  // GLB に法線が入っていないので、陰影のために読み込み時に計算する
+  if (!geometry.attributes.normal) geometry.computeVertexNormals()
   const materialRef = useRef<any>(null)
   const meshRef = useRef<any>(null)
 
@@ -30,7 +33,7 @@ function Model() {
   return (
     <mesh
       ref={meshRef}
-      geometry={(nodes['tripo_node_19239756-3b32-4ebf-b5a8-a8ef441171cd'] as any).geometry}
+      geometry={geometry}
     >
       <morphingMaterial ref={materialRef} />
     </mesh>
@@ -65,11 +68,12 @@ function CameraAnimation() {
 
 function KneeScene() {
   return (
-    <Canvas style={{ width: '100vw', height: '80vh' }} camera={{ fov: 45 }}>
+    <Canvas style={{ width: '100%', height: '100%' }} camera={{ fov: 45 }}>
       <ambientLight intensity={0.5} />
       <directionalLight position={[10, 10, 5]} intensity={1} />
       <Model />
-      <OrbitControls />
+      {/* ホイールはページのスクロールに使うのでズームは無効 */}
+      <OrbitControls enableZoom={false} />
       <CameraAnimation />
     </Canvas>
   )

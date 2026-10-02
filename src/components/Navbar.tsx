@@ -6,10 +6,8 @@ const navKeys = [
   { id: 'home', key: 'nav.home' },
   { id: 'about', key: 'nav.about' },
   { id: 'research', key: 'nav.research' },
-  { id: 'skills', key: 'nav.skills' },
   { id: 'works', key: 'nav.works' },
-  { id: 'tech-stack', key: 'nav.techStack' },
-  { id: 'vision', key: 'nav.vision' },
+  { id: 'skills', key: 'nav.skills' },
   { id: 'contact', key: 'nav.contact' },
 ];
 

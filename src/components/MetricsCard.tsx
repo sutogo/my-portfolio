@@ -11,6 +11,11 @@ type Props = {
   metrics: Metric[];
 };
 
+// 整数のみカウントアップする（「±0.5」のような値は途中で「5」と表示されてしまうため対象外）
+function isNumeric(value: string): boolean {
+  return /^\d+$/.test(value);
+}
+
 function animateValue(
   start: number,
   end: number,
@@ -42,61 +47,67 @@ function MetricsCard({ metrics }: Props) {
     metrics.map(() => '0')
   );
 
+  // metrics は呼び出し側で毎レンダー新しい配列として作られるため、依存配列に入れると
+  // observer が張り直され続け、非同期のコールバックが発火する前に切断されてしまう。
+  // observer はマウント時に一度だけ張り、最新の metrics は ref から読む。
+  const metricsRef = useRef(metrics);
+  metricsRef.current = metrics;
+
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        setHasAnimated(true);
 
-          metrics.forEach((metric, index) => {
-            const numericValue = parseInt(metric.value.replace(/[^0-9]/g, ''), 10);
-            if (isNaN(numericValue)) {
-              // Non-numeric (e.g. "WCB 2026") - just reveal
+        metricsRef.current.forEach((metric, index) => {
+          // 数値以外（「優秀講演賞」など）はカウントアップせず、描画側で props を直接使う
+          if (!isNumeric(metric.value)) return;
+
+          const numericValue = parseInt(metric.value, 10);
+          animateValue(
+            0,
+            numericValue,
+            1200 + index * 200,
+            (val) => {
+              setDisplayValues((prev) => {
+                const next = [...prev];
+                next[index] = String(val);
+                return next;
+              });
+            },
+            () => {
               setDisplayValues((prev) => {
                 const next = [...prev];
                 next[index] = metric.value;
                 return next;
               });
-            } else {
-              animateValue(
-                0,
-                numericValue,
-                1200 + index * 200,
-                (val) => {
-                  setDisplayValues((prev) => {
-                    const next = [...prev];
-                    next[index] = String(val);
-                    return next;
-                  });
-                },
-                () => {
-                  setDisplayValues((prev) => {
-                    const next = [...prev];
-                    next[index] = metric.value;
-                    return next;
-                  });
-                }
-              );
             }
-          });
-        }
+          );
+        });
       },
       { threshold: 0.3 }
     );
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [hasAnimated, metrics]);
+  }, []);
 
   return (
     <div className={styles.metricsGrid} ref={containerRef}>
       {metrics.map((metric, index) => (
         <div key={index} className={`${styles.metricItem} ${hasAnimated ? styles.visible : ''}`}>
-          <span className={styles.metricValue}>
-            {displayValues[index]}
+          <span
+            className={`${styles.metricValue} ${
+              metric.value.length > 4 ? styles.metricValueLong : ''
+            }`}
+          >
+            {/* 数値はカウントアップ用の state を、それ以外は props を直接描画する。
+                state 経由だと言語切替で値が追従しないため。 */}
+            {isNumeric(metric.value) ? displayValues[index] : metric.value}
             {metric.suffix && <span className={styles.metricSuffix}>{metric.suffix}</span>}
           </span>
           <span className={styles.metricLabel}>{metric.label}</span>

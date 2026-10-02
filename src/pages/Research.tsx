@@ -1,149 +1,115 @@
+import { FaArrowRight, FaBalanceScale, FaChartLine, FaUserMd } from 'react-icons/fa';
 import styles from './Research.module.css';
 import FadeIn from '../components/FadeIn';
+import MetricsCard from '../components/MetricsCard';
 import { useLang } from '../i18n/LangContext';
 
 function Research() {
   const { t } = useLang();
+
+  const problem = ['background', 'issue', 'goal'];
+  const features = [
+    { icon: <FaBalanceScale />, key: 'f1' },
+    { icon: <FaUserMd />, key: 'f2' },
+    { icon: <FaChartLine />, key: 'f3' },
+  ];
+  const flow = ['s1', 's2', 's3', 's4'];
+  const results = [
+    { value: '48', suffix: ' N', label: t('research.results.m1') },
+    { value: '20', suffix: '°', label: t('research.results.m2') },
+    { value: '±0.5', suffix: ' N', label: t('research.results.m3') },
+  ];
 
   return (
     <div className={styles.researchContainer}>
       <FadeIn>
         <p className={styles.sectionLabel}>{t('research.label')}</p>
         <h2 className={styles.sectionTitle}>{t('research.title')}</h2>
-        <p className={styles.sectionSubtitle}>{t('research.subtitle')}</p>
+        <p className={styles.sectionSubtitle}>
+          {/* 折り返すときは \n の位置で折り返し、語の途中では切らない */}
+          {t('research.subtitle').split('\n').map((part) => (
+            <span key={part} className={styles.nowrapChunk}>{part}</span>
+          ))}
+        </p>
       </FadeIn>
 
-      <div className={styles.researchGrid}>
-        {/* 研究概要 */}
+      {/* 背景・課題・目的 */}
+      <FadeIn delay={0.1}>
+        <div className={styles.researchCard}>
+          <h3>{t('research.problem.title')}</h3>
+          <dl className={styles.problemList}>
+            {problem.map((k) => (
+              <div key={k}>
+                <dt>{t(`research.problem.${k}Label`)}</dt>
+                <dd>{t(`research.problem.${k}`)}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </FadeIn>
+
+      {/* システムの特徴 */}
+      <h3 className={styles.blockTitle}>{t('research.features.title')}</h3>
+      <div className={styles.featureGrid}>
+        {features.map((f, i) => (
+          <FadeIn key={f.key} delay={0.1 + i * 0.1}>
+            <div className={styles.researchCard}>
+              <div className={styles.cardIcon}>{f.icon}</div>
+              <h3>{t(`research.${f.key}.title`)}</h3>
+              <p>{t(`research.${f.key}.desc`)}</p>
+            </div>
+          </FadeIn>
+        ))}
+      </div>
+
+      {/* システム構成（装置写真はセキュリティ上載せないため、構成図で示す） */}
+      <FadeIn delay={0.1}>
+        <div className={styles.researchCard}>
+          <h3>{t('research.flow.title')}</h3>
+          <ol className={styles.flow}>
+            {flow.map((k, i) => (
+              <li key={k}>
+                {i > 0 && <FaArrowRight className={styles.flowArrow} aria-hidden />}
+                <div className={styles.flowStep}>
+                  <strong>{t(`research.flow.${k}`)}</strong>
+                  <span>{t(`research.flow.${k}.sub`)}</span>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <p>{t('research.flow.eval')}</p>
+        </div>
+      </FadeIn>
+
+      {/* 結果 */}
+      <h3 className={styles.blockTitle}>{t('research.results.title')}</h3>
+      <MetricsCard metrics={results} />
+      <FadeIn>
+        <p className={styles.resultSummary}>{t('research.results.summary')}</p>
+      </FadeIn>
+
+      {/* 展望・成果 */}
+      <div className={styles.featureGrid}>
         <FadeIn delay={0.1}>
           <div className={styles.researchCard}>
-            <div className={styles.cardIcon}>🔬</div>
-            <h3>{t('research.overview.title')}</h3>
-            <p>
-              {t('research.overview.text').split('{strong}')[0]}
-              <strong>{t('research.overview.strong')}</strong>
-              {t('research.overview.text').split('{strong}')[1]}
-            </p>
+            <h3>{t('research.outlook.title')}</h3>
+            <p>{t('research.outlook.text')}</p>
           </div>
         </FadeIn>
-
-        {/* 背景と課題 */}
         <FadeIn delay={0.2}>
           <div className={styles.researchCard}>
-            <div className={styles.cardIcon}>🎯</div>
-            <h3>{t('research.background.title')}</h3>
-            <p>{t('research.background.text')}</p>
-          </div>
-        </FadeIn>
-
-        {/* Technical Approach */}
-        <FadeIn delay={0.3}>
-          <div className={styles.researchCard}>
-            <div className={styles.cardIcon}>⚙️</div>
-            <h3>{t('research.approach.title')}</h3>
-            <div className={styles.approachGrid}>
-              <div className={styles.approachItem}>
-                <span className={styles.approachLabel}>{t('research.approach.hw.label')}</span>
-                <p>
-                  {t('research.approach.hw.text')
-                    .replace('{s1}', t('research.approach.hw.s1'))
-                    .replace('{s2}', t('research.approach.hw.s2'))
-                    .replace('{s3}', t('research.approach.hw.s3'))}
-                </p>
-              </div>
-              <div className={styles.approachItem}>
-                <span className={styles.approachLabel}>{t('research.approach.sw.label')}</span>
-                <p>
-                  {t('research.approach.sw.text')
-                    .replace('{s1}', t('research.approach.sw.s1'))
-                    .replace('{s2}', t('research.approach.sw.s2'))}
-                </p>
-              </div>
-            </div>
-          </div>
-        </FadeIn>
-
-        {/* 膝モデル */}
-        <FadeIn delay={0.15}>
-          <div className={styles.researchCard}>
-            <div className={styles.cardIcon}>🦴</div>
-            <h3>{t('research.knee.title')}</h3>
-            <p>
-              {t('research.knee.text').replace('{s1}', t('research.knee.s1'))}
-            </p>
-          </div>
-        </FadeIn>
-
-        {/* 実験結果 */}
-        <FadeIn delay={0.25}>
-          <div className={styles.researchCard}>
-            <div className={styles.cardIcon}>📊</div>
-            <h3>{t('research.results.title')}</h3>
-            <div className={styles.resultGrid}>
-              <div className={styles.resultItem}>
-                <span className={styles.resultMetric}>{t('research.results.pfj')}</span>
-                <p>
-                  {t('research.results.pfj.text').replace('{s1}', t('research.results.pfj.s1'))}
-                </p>
-              </div>
-              <div className={styles.resultItem}>
-                <span className={styles.resultMetric}>{t('research.results.tfj')}</span>
-                <p>
-                  {t('research.results.tfj.text').replace('{s1}', t('research.results.tfj.s1'))}
-                </p>
-              </div>
-            </div>
-            <p className={styles.resultSummary}>
-              {t('research.results.summary').replace('{s1}', t('research.results.summary.s1'))}
-            </p>
-          </div>
-        </FadeIn>
-
-        {/* 成果 */}
-        <FadeIn delay={0.35}>
-          <div className={styles.researchCard}>
-            <div className={styles.cardIcon}>🏆</div>
             <h3>{t('research.achievements.title')}</h3>
             <ul className={styles.achievementList}>
-              <li>
-                <strong>{t('research.achievements.wcb')}</strong>
-                {t('research.achievements.wcb.text')}
-              </li>
-              <li>
-                <strong>{t('research.achievements.jsme')}</strong>
-                {t('research.achievements.jsme.text')}
-              </li>
-              <li>
-                <strong>{t('research.achievements.icbme')}</strong>
-                {t('research.achievements.icbme.text')}
-              </li>
+              {['wcb', 'jsme', 'icbme'].map((k) => (
+                <li key={k}>
+                  <strong>{t(`research.achievements.${k}`)}</strong>
+                  {t(`research.achievements.${k}.text`)}
+                </li>
+              ))}
             </ul>
           </div>
         </FadeIn>
       </div>
-
-      <FadeIn delay={0.3}>
-        <div className={styles.slideSection}>
-          <h3>{t('research.slide.title')}</h3>
-          <div className={styles.slideContainer}>
-            <iframe
-              className="speakerdeck-iframe"
-              style={{
-                border: 'none',
-                background: 'rgba(0, 0, 0, 0.2)',
-                borderRadius: '12px',
-                width: '100%',
-                height: 'auto',
-                aspectRatio: '560 / 315',
-              }}
-              src="https://speakerdeck.com/player/ffcc7a7df3874b8ca71421c9b9dfde44"
-              title="研究発表スライド"
-              allowFullScreen
-              data-ratio="1.7777777777777777"
-            />
-          </div>
-        </div>
-      </FadeIn>
     </div>
   );
 }

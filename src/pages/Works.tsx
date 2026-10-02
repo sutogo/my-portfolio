@@ -1,78 +1,84 @@
 import { useState } from 'react';
 import styles from './Works.module.css';
 import FadeIn from '../components/FadeIn';
-import { worksData } from '../data/works';
+import { worksData, type Work } from '../data/works';
 import Modal from '../components/Modal';
 import { useLang } from '../i18n/LangContext';
 
-type Work = (typeof worksData)[0] & { githubUrl?: string; imageUrl?: string };
-
 function Works() {
   const { t } = useLang();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedWork, setSelectedWork] = useState<Work | null>(null);
+  const [selected, setSelected] = useState<Work | null>(null);
 
-  const handleCardClick = (work: Work) => {
-    setSelectedWork(work);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedWork(null);
-  };
+  const card = (work: Work, index: number) => (
+    <FadeIn key={work.id} delay={index * 0.1}>
+      <button
+        type="button"
+        className={`${styles.workCard} ${work.featured ? styles.featured : ''}`}
+        onClick={() => setSelected(work)}
+      >
+        <div className={styles.visual}>
+          {work.imageUrl ? (
+            <img src={work.imageUrl} alt="" className={styles.workImage} />
+          ) : (
+            <span className={styles.workIcon}>{work.icon}</span>
+          )}
+        </div>
+        <div className={styles.body}>
+          <h3>{t(`works.${work.id}.title`)}</h3>
+          <p>{t(`works.${work.id}.desc`)}</p>
+          <div className={styles.tags}>
+            {work.tags.map((tag) => (
+              <span className={styles.tag} key={tag}>{tag}</span>
+            ))}
+          </div>
+        </div>
+      </button>
+    </FadeIn>
+  );
 
   return (
     <div className={styles.worksContainer}>
       <FadeIn>
         <p className={styles.sectionLabel}>{t('works.label')}</p>
         <h2 className={styles.sectionTitle}>{t('works.title')}</h2>
-        <p className={styles.sectionSubtitle}>
-          {t('works.subtitle')}
-        </p>
+        <p className={styles.sectionSubtitle}>{t('works.subtitle')}</p>
       </FadeIn>
 
-      <div className={styles.worksGrid}>
-        {worksData.map((work, index) =>
-          work.imageUrl ? (
-            <FadeIn key={index} delay={index * 0.1}>
-              <div className={styles.workCard} onClick={() => handleCardClick(work)}>
-                <img src={work.imageUrl} alt={work.title} className={styles.workImage} />
-                <div className={styles.workCardOverlay}>
-                  <h3 dangerouslySetInnerHTML={{ __html: work.title }} />
-                  <div className={styles.tags}>
-                    {work.tags.map((tag, tagIndex) => (
-                      <span className={styles.tag} key={tagIndex}>{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </FadeIn>
-          ) : null
-        )}
+      <div className={styles.featuredGrid}>
+        {worksData.filter((w) => w.featured).map(card)}
       </div>
 
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
-        {selectedWork && (
+      <h3 className={styles.groupTitle}>{t('works.others')}</h3>
+      <div className={styles.worksGrid}>
+        {worksData.filter((w) => !w.featured).map(card)}
+      </div>
+
+      <Modal isOpen={selected !== null} onClose={() => setSelected(null)}>
+        {selected && (
           <div className={styles.modalContent}>
-            <h2 dangerouslySetInnerHTML={{ __html: selectedWork.title }} />
-            {selectedWork.imageUrl && (
-              <img src={selectedWork.imageUrl} alt={selectedWork.title} className={styles.modalImage} />
+            <h2>{t(`works.${selected.id}.title`)}</h2>
+            {selected.imageUrl && (
+              <img src={selected.imageUrl} alt={t(`works.${selected.id}.title`)} className={styles.modalImage} />
             )}
-            <p>{selectedWork.description}</p>
+            <p>{t(`works.${selected.id}.desc`)}</p>
+            {selected.featured && (
+              <dl className={styles.story}>
+                {['challenge', 'action', 'result'].map((k) => (
+                  <div key={k}>
+                    <dt>{t(`works.${k}`)}</dt>
+                    <dd>{t(`works.${selected.id}.${k}`)}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
             <div className={styles.tags}>
-              {selectedWork.tags.map((tag, tagIndex) => (
-                <span className={styles.tag} key={tagIndex}>{tag}</span>
+              {selected.tags.map((tag) => (
+                <span className={styles.tag} key={tag}>{tag}</span>
               ))}
             </div>
-            {selectedWork.githubUrl && (
-              <a
-                href={selectedWork.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.githubLink}
-              >
-                GitHubで見る →
+            {selected.githubUrl && (
+              <a href={selected.githubUrl} target="_blank" rel="noopener noreferrer" className={styles.githubLink}>
+                {t('works.github')}
               </a>
             )}
           </div>

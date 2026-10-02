@@ -14,6 +14,7 @@ function About() {
     { value: '10', suffix: '+', label: t('about.metric.lines') },
     { value: '3', suffix: '', label: t('about.metric.countries') },
     { value: '2026', suffix: '', label: t('about.metric.wcb') },
+    { value: t('about.metric.award.value'), suffix: '', label: t('about.metric.award') },
   ];
 
   return (

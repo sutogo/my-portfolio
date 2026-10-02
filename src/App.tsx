@@ -6,8 +6,6 @@ import Works from './pages/Works';
 import Contact from './pages/Contact';
 import Research from './pages/Research';
 import Skills from './pages/Skills';
-import TechStack from './pages/TechStack';
-import Vision from './pages/Vision';
 import Navbar from './components/Navbar';
 import ScrollProgress from './components/ScrollProgress';
 
@@ -28,17 +26,11 @@ function App() {
           <section id="research">
             <Research />
           </section>
-          <section id="skills">
-            <Skills />
-          </section>
           <section id="works">
             <Works />
           </section>
-          <section id="tech-stack">
-            <TechStack />
-          </section>
-          <section id="vision">
-            <Vision />
+          <section id="skills">
+            <Skills />
           </section>
           <section id="contact">
             <Contact />

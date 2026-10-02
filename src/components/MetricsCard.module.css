@@ -1,9 +1,9 @@
 .metricsGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   gap: var(--space-md);
-  margin-bottom: var(--space-3xl);
 }
+
 
 .metricItem {
   text-align: center;
@@ -46,6 +46,12 @@
   background-clip: text;
   margin-bottom: var(--space-sm);
   line-height: 1.2;
+}
+
+/* 「優秀講演賞」のような長い文字列の値は縮めて溢れを防ぐ */
+.metricValueLong {
+  font-size: var(--text-xl);
+  line-height: 1.35;
 }
 
 .metricSuffix {

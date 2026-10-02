@@ -5,7 +5,7 @@ import QualificationCard from '../components/QualificationCard';
 import { skillsData, qualificationsData } from '../data/skills';
 import { useLang } from '../i18n/LangContext';
 
-const categories = ['Web', 'Hardware', 'Other'] as const;
+const categories = ['hardware', 'software', 'web'] as const;
 
 function Skills() {
   const { t } = useLang();
@@ -23,11 +23,11 @@ function Skills() {
         return (
           <div key={category} className={styles.categorySection}>
             <FadeIn>
-              <h3 className={styles.categoryTitle}>{category}</h3>
+              <h3 className={styles.categoryTitle}>{t(`skills.cat.${category}`)}</h3>
             </FadeIn>
             <div className={styles.skillsGrid}>
               {filteredSkills.map((skill, index) => (
-                <FadeIn key={index} delay={index * 0.05}>
+                <FadeIn key={skill.id} delay={index * 0.05}>
                   <SkillCard skill={skill} />
                 </FadeIn>
               ))}
@@ -41,7 +41,7 @@ function Skills() {
       </FadeIn>
       <div className={styles.qualGrid}>
         {qualificationsData.map((qualification, index) => (
-          <FadeIn key={index} delay={index * 0.05}>
+          <FadeIn key={qualification.id} delay={index * 0.05}>
             <QualificationCard qualification={qualification} />
           </FadeIn>
         ))}

@@ -31,27 +31,61 @@
 }
 
 /* Grid Layout */
-.worksGrid {
+.featuredGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--space-lg);
 }
 
+.worksGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-lg);
+}
+
+.groupTitle {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  margin: var(--space-3xl) 0 var(--space-lg);
+}
+
 .workCard {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  text-align: left;
+  font: inherit;
+  color: inherit;
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   overflow: hidden;
   cursor: pointer;
-  aspect-ratio: 16 / 10;
   transition: all var(--transition-normal);
 }
 
-.workCard:hover {
+.workCard:hover,
+.workCard:focus-visible {
   border-color: var(--color-border-accent);
   box-shadow: var(--shadow-glow);
   transform: translateY(-4px);
+}
+
+.visual {
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-primary);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.featured .visual {
+  aspect-ratio: 16 / 7;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.12), rgba(124, 77, 255, 0.12));
 }
 
 .workImage {
@@ -59,37 +93,65 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: all var(--transition-slow);
 }
 
-.workCard:hover .workImage {
-  opacity: 0.15;
-  transform: scale(1.05);
+.workIcon {
+  font-size: 3rem;
+  color: var(--color-accent-primary);
 }
 
-.workCardOverlay {
-  position: absolute;
-  inset: 0;
+.body {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: var(--space-xl);
-  opacity: 0;
-  transition: opacity var(--transition-normal);
+  gap: var(--space-sm);
+  padding: var(--space-lg);
 }
 
-.workCard:hover .workCardOverlay {
-  opacity: 1;
-}
-
-.workCardOverlay h3 {
-  font-family: var(--font-heading);
-  font-size: var(--text-lg);
+.body h3 {
+  font-size: var(--text-base);
   font-weight: 700;
   color: var(--color-text-primary);
-  margin-bottom: var(--space-md);
+}
+
+.featured .body h3 {
+  font-size: var(--text-lg);
+}
+
+.body p {
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.body .tags {
+  margin-top: auto;
+  justify-content: flex-start;
+}
+
+/* 課題・取り組み・成果（モーダル） */
+.story {
+  display: grid;
+  gap: var(--space-md);
+  margin: 0 0 var(--space-lg);
+}
+
+.story dt {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-accent-primary);
+  margin-bottom: 2px;
+}
+
+.story dd {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.8;
+  color: var(--color-text-secondary);
 }
 
 /* Tags */
@@ -160,7 +222,8 @@
     padding: var(--space-3xl) var(--space-md);
   }
 
-  .worksGrid {
+  .worksGrid,
+  .featuredGrid {
     grid-template-columns: 1fr;
   }
 }

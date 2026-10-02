@@ -24,6 +24,7 @@
 
 /* Intro Card */
 .introCard {
+  margin-top: var(--space-3xl);
   background: var(--color-bg-card);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);

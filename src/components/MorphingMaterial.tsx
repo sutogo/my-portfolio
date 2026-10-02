@@ -5,8 +5,10 @@ import { extend } from '@react-three/fiber'
 // シェーダーコード（GLSL）
 const vertexShader = `
   varying vec2 vUv;
+  varying vec3 vNormal;
   void main() {
     vUv = uv;
+    vNormal = normalize(normalMatrix * normal);
     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
   }
 `
@@ -16,6 +18,7 @@ const fragmentShader = `
   uniform vec3 uColorA;
   uniform vec3 uColorB;
   varying vec2 vUv;
+  varying vec3 vNormal;
 
   void main() {
     // ワイヤーフレームのパターンを生成
@@ -23,6 +26,12 @@ const fragmentShader = `
     
     // uProgressに応じて色を混ぜる
     vec3 color = mix(uColorA, uColorB, uProgress);
+
+    // 陰影（拡散光）と，サイトのアクセント色の輪郭光．これがないと単色の平板なシルエットになる
+    vec3 n = normalize(vNormal);
+    float diffuse = 0.35 + 0.65 * max(dot(n, normalize(vec3(0.5, 0.8, 0.6))), 0.0);
+    float rim = pow(1.0 - abs(n.z), 2.5);
+    color = color * diffuse + vec3(0.0, 0.9, 1.0) * rim * 0.6;
     
     // uProgressに応じてワイヤーフレームからソリッドに変化させる
     float alpha = mix(grid, 1.0, uProgress);

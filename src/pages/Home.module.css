@@ -1,29 +1,32 @@
 .heroContainer {
   position: relative;
-  width: 100%;
   min-height: 100vh;
-  display: flex;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  gap: var(--space-xl);
 }
 
+/* 研究対象の膝モデルを右カラムに置いて主役にする */
 .canvasWrapper {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  opacity: 0.35;
+  position: relative;
+  order: 2;
+  height: 75vh;
 }
 
 .modelCaption {
   position: absolute;
-  bottom: 24px;
-  right: 24px;
+  bottom: -1.75rem;
+  left: 0;
+  right: 0;
+  text-align: center;
   font-family: var(--font-heading);
   font-size: var(--text-xs);
   font-weight: 500;
   color: var(--color-text-muted);
-  opacity: 0.5;
   letter-spacing: 0.05em;
   pointer-events: none;
 }
@@ -31,9 +34,7 @@
 .heroContent {
   position: relative;
   z-index: 1;
-  text-align: center;
-  padding: var(--space-xl);
-  max-width: 800px;
+  order: 1;
 }
 
 .greeting {
@@ -80,7 +81,6 @@
 .heroCta {
   display: flex;
   gap: var(--space-md);
-  justify-content: center;
 }
 
 .ctaPrimary {
@@ -143,6 +143,28 @@
 }
 
 /* Responsive */
+@media (max-width: 900px) {
+  .heroContainer {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: calc(var(--space-3xl) * 2) var(--space-md) var(--space-3xl);
+    text-align: center;
+  }
+
+  .canvasWrapper {
+    height: 40vh;
+  }
+
+  .heroCta {
+    justify-content: center;
+  }
+
+  /* 1カラムではモデルと重なるので出さない */
+  .scrollIndicator {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .catchphrase {
     font-size: var(--text-xl);
@@ -152,7 +174,4 @@
     font-size: var(--text-base);
   }
 
-  .modelCaption {
-    display: none;
-  }
 }
